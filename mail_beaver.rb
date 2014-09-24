@@ -27,7 +27,7 @@ class MailBeaver
   def send_mail
     mail = Mail.new
     mail.from = 'thesender@mailbeaver.org'
-    mail.to = @recipient.defined? ? @recipient : 'fallback@default.com'
+    mail.to = @recipient.nil? ? 'fallback@default.com' : @recipient
     mail.subject = 'Pictures'
     mail.header['X-Custom-Header'] = 'custom value'
     mail.attachments[@file] = File.read(@absolute_path)
